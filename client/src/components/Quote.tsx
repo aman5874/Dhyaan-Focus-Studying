@@ -1,12 +1,15 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { quotes } from "@shared/schema";
 
 export function Quote() {
   const { data: randomQuote } = useQuery({
-    queryKey: ["/api/quotes"],
+    queryKey: ["/api/quotes", Math.random()], // Add random key to force refresh
     queryFn: () => {
       return quotes[Math.floor(Math.random() * quotes.length)];
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
   });
 
   if (!randomQuote) return null;
