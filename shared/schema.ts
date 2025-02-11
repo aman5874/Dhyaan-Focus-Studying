@@ -18,26 +18,12 @@ export type InsertTask = z.infer<typeof insertTaskSchema>;
 export type Task = typeof tasks.$inferSelect;
 
 export const soundPresets = {
-  nature: {
-    rain: "https://cdn.example.com/sounds/rain.mp3",
-    forest: "https://cdn.example.com/sounds/forest.mp3",
-    waterfall: "https://cdn.example.com/sounds/waterfall.mp3"
-  },
-  focus: {
-    gamma: "https://cdn.example.com/sounds/40hz.mp3"
-  },
-  zen: {
-    bowls: "https://cdn.example.com/sounds/singing-bowls.mp3"
-  },
-  animals: {
-    birds: "https://cdn.example.com/sounds/birds.mp3"
-  },
-  jazz: {
-    soft: "https://cdn.example.com/sounds/soft-jazz.mp3"
-  },
-  ambient: {
-    cafe: "https://cdn.example.com/sounds/cafe.mp3"
-  }
+  nature: "https://cdn.example.com/sounds/nature.mp3",
+  gamma: "https://cdn.example.com/sounds/40hz.mp3",
+  bowls: "https://cdn.example.com/sounds/singing-bowls.mp3",
+  animals: "https://cdn.example.com/sounds/animals.mp3",
+  jazz: "https://cdn.example.com/sounds/soft-jazz.mp3",
+  cafe: "https://cdn.example.com/sounds/cafe.mp3"
 } as const;
 
 export const quotes = [

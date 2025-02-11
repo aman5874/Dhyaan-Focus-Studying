@@ -8,19 +8,26 @@ export function Clock() {
     return () => clearInterval(timer);
   }, []);
 
+  const hours = time.getHours().toString().padStart(2, '0');
+  const minutes = time.getMinutes().toString().padStart(2, '0');
+  const seconds = time.getSeconds().toString().padStart(2, '0');
+
   return (
-    <div className="text-center space-y-4">
-      <time className="text-7xl font-mono tracking-tight">
-        {time.toLocaleTimeString([], { 
-          hour: '2-digit', 
-          minute: '2-digit', 
-          second: '2-digit',
-          hour12: false 
-        })}
-      </time>
+    <div className="text-center space-y-6">
+      <div className="flex justify-center items-baseline gap-2">
+        <span className="text-8xl font-mono font-light tracking-tight">
+          {hours}
+          <span className="text-primary animate-pulse">:</span>
+          {minutes}
+        </span>
+        <span className="text-4xl font-mono text-muted-foreground">
+          {seconds}
+        </span>
+      </div>
+
       <p className="text-sm text-muted-foreground">
         {time.toLocaleDateString([], { 
-          weekday: 'long', 
+          weekday: 'long',
           year: 'numeric',
           month: 'long', 
           day: 'numeric' 
