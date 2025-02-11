@@ -13,6 +13,7 @@ export function TaskList() {
 
   const { data: tasks = [] } = useQuery({
     queryKey: ["/api/tasks", userId],
+    queryFn: () => apiRequest("GET", `/api/tasks/${userId}`).then(res => res.json())
   });
 
   const createTask = useMutation({
