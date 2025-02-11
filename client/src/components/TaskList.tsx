@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { Check, Plus, Trash2 } from "lucide-react";
+import { Check, Plus, Trash2, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import confetti from 'canvas-confetti';
@@ -10,6 +11,7 @@ import confetti from 'canvas-confetti';
 export function TaskList() {
   const [newTask, setNewTask] = useState("");
   const userId = "demo-user";
+  const { toast } = useToast();
 
   const { data: tasks = [] } = useQuery({
     queryKey: ["/api/tasks", userId],
