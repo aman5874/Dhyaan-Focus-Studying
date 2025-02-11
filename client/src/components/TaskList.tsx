@@ -37,9 +37,15 @@ export function TaskList() {
       const allCompleted = tasks.every(t => t.completed);
       if (allCompleted) {
         confetti({
-          particleCount: 100,
+          particleCount: 150,
           spread: 70,
-          origin: { y: 0.6 }
+          origin: { y: 0.6 },
+          colors: ['#ff0000', '#00ff00', '#0000ff']
+        });
+        toast({
+          title: "Congratulations! 🎉",
+          description: "You've completed all your tasks! Keep up the great work!",
+          duration: 5000,
         });
       }
     },
