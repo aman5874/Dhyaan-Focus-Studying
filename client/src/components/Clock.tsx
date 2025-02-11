@@ -9,12 +9,22 @@ export function Clock() {
   }, []);
 
   return (
-    <div className="text-center">
-      <time className="text-6xl font-mono">
-        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+    <div className="text-center space-y-4">
+      <time className="text-7xl font-mono tracking-tight">
+        {time.toLocaleTimeString([], { 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          second: '2-digit',
+          hour12: false 
+        })}
       </time>
-      <p className="text-sm text-muted-foreground mt-2">
-        {time.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
+      <p className="text-sm text-muted-foreground">
+        {time.toLocaleDateString([], { 
+          weekday: 'long', 
+          year: 'numeric',
+          month: 'long', 
+          day: 'numeric' 
+        })}
       </p>
     </div>
   );

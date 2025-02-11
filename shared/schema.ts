@@ -23,22 +23,25 @@ export const soundPresets = {
     forest: "https://cdn.example.com/sounds/forest.mp3",
     waterfall: "https://cdn.example.com/sounds/waterfall.mp3"
   },
-  binaural: {
-    gamma: "https://cdn.example.com/sounds/gamma.mp3"
+  focus: {
+    gamma: "https://cdn.example.com/sounds/40hz.mp3"
   },
   zen: {
-    bowls: "https://cdn.example.com/sounds/bowls.mp3"
+    bowls: "https://cdn.example.com/sounds/singing-bowls.mp3"
   },
   animals: {
     birds: "https://cdn.example.com/sounds/birds.mp3"
   },
   jazz: {
-    soft: "https://cdn.example.com/sounds/jazz.mp3"
+    soft: "https://cdn.example.com/sounds/soft-jazz.mp3"
+  },
+  ambient: {
+    cafe: "https://cdn.example.com/sounds/cafe.mp3"
   }
 } as const;
 
 export const quotes = [
-  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "If you can dream it, you can do it.", author: "Walt Disney" },
   { text: "Success is not final, failure is not fatal.", author: "Winston Churchill" },
   { text: "Focus on being productive instead of busy.", author: "Tim Ferriss" }
 ];
