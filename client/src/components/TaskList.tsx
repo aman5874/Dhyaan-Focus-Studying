@@ -9,35 +9,51 @@ import { Card } from "@/components/ui/card";
 import confetti from 'canvas-confetti';
 
 const celebrateCompletion = () => {
-  // First burst
+  // First burst from bottom-center
   confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 },
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.8, x: 0.5 },
+    gravity: 0.8,
+    scalar: 1.2,
+    startVelocity: 30,
     colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
   });
 
-  // Second burst after a small delay
+  // Second burst from left
   setTimeout(() => {
     confetti({
-      particleCount: 50,
+      particleCount: 100,
       angle: 60,
-      spread: 55,
-      origin: { x: 0 },
+      spread: 80,
+      origin: { x: 0, y: 0.5 },
+      gravity: 0.8,
+      scalar: 1.2,
+      startVelocity: 30,
       colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
     });
-  }, 200);
+  }, 250);
 
-  // Third burst from the other side
+  // Third burst from right
   setTimeout(() => {
     confetti({
-      particleCount: 50,
+      particleCount: 100,
       angle: 120,
-      spread: 55,
-      origin: { x: 1 },
+      spread: 80,
+      origin: { x: 1, y: 0.5 },
+      gravity: 0.8,
+      scalar: 1.2,
+      startVelocity: 30,
       colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
     });
-  }, 400);
+  }, 500);
+};
+
+// Define a type for the task objects
+type Task = {
+  id: number;
+  title: string;
+  completed: boolean;
 };
 
 export function TaskList() {
@@ -45,7 +61,7 @@ export function TaskList() {
   const userId = "demo-user";
   const { toast } = useToast();
 
-  const { data: tasks = [] } = useQuery({
+  const { data: tasks = [] } = useQuery<Task[]>({
     queryKey: ["/api/tasks", userId],
     queryFn: () => apiRequest("GET", `/api/tasks/${userId}`).then(res => res.json())
   });
@@ -66,9 +82,11 @@ export function TaskList() {
       const res = await apiRequest("PATCH", `/api/tasks/${id}`, { completed });
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (_, { completed }) => {
       queryClient.invalidateQueries({ queryKey: ["/api/tasks", userId] });
-      const allCompleted = tasks.every(t => t.completed);
+      const allCompleted = tasks.every((t: Task) => 
+        t.id === _.id ? completed : t.completed
+      );
       if (allCompleted && tasks.length > 0) {
         celebrateCompletion();
         toast({

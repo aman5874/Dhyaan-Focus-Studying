@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { quotes } from "@shared/schema";
 
 export function Quote() {
-  const [quoteIndex, setQuoteIndex] = useState(0);
+  // Get a random quote index on initial render
+  const [quoteIndex, setQuoteIndex] = useState(() => 
+    Math.floor(Math.random() * quotes.length)
+  );
 
   // Rotate quotes every 5 minutes
   useEffect(() => {
     const timer = setInterval(() => {
-      setQuoteIndex(current => (current + 1) % quotes.length);
+      setQuoteIndex(current => {
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * quotes.length);
+        } while (newIndex === current && quotes.length > 1);
+        return newIndex;
+      });
     }, 5 * 60 * 1000);
 
     return () => clearInterval(timer);
