@@ -3,6 +3,8 @@ import { createServer } from "http";
 import { storage } from "./storage";
 import { insertTaskSchema } from "@shared/schema";
 import { quotes } from "@shared/schema";
+import express from 'express';
+import { deleteAllTasks } from './storage';
 
 export function registerRoutes(app: Express) {
   const httpServer = createServer(app);
@@ -35,5 +37,19 @@ export function registerRoutes(app: Express) {
     res.status(204).end();
   });
 
+  const router = express.Router();
+
+  router.delete('/api/tasks/:userId/all', async (req, res) => {
+    const { userId } = req.params;
+    try {
+      await deleteAllTasks(userId);
+      res.status(200).send({ message: 'All tasks deleted' });
+    } catch (error) {
+      res.status(500).send({ error: 'Failed to delete tasks' });
+    }
+  });
+
   return httpServer;
 }
+
+export default registerRoutes;

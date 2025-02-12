@@ -20,10 +20,7 @@ export function useAudio() {
     let gainNode = gainNodes.current.get(soundName);
 
     if (!audioElement) {
-      const soundUrl = Object.values(soundPresets).reduce((acc, category) => {
-        return { ...acc, ...category };
-      }, {})[soundName];
-
+      const soundUrl = soundPresets[soundName];
       audioElement = new Audio(soundUrl);
       audioElement.loop = true;
       audioElements.current.set(soundName, audioElement);

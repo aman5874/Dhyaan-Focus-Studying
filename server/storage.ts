@@ -42,3 +42,9 @@ export class MemStorage implements IStorage {
 }
 
 export const storage = new MemStorage();
+
+export async function deleteAllTasks(userId: string) {
+  // Assuming you are using a database, replace this with your actual DB logic
+  const result = await db.collection('tasks').deleteMany({ userId });
+  return result;
+}
