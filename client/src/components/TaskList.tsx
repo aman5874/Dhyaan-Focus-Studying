@@ -8,6 +8,38 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import confetti from 'canvas-confetti';
 
+const celebrateCompletion = () => {
+  // First burst
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
+  });
+
+  // Second burst after a small delay
+  setTimeout(() => {
+    confetti({
+      particleCount: 50,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
+    });
+  }, 200);
+
+  // Third burst from the other side
+  setTimeout(() => {
+    confetti({
+      particleCount: 50,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: ['#FF1493', '#00FF00', '#00BFFF', '#FFD700', '#FF4500']
+    });
+  }, 400);
+};
+
 export function TaskList() {
   const [newTask, setNewTask] = useState("");
   const userId = "demo-user";
@@ -37,16 +69,11 @@ export function TaskList() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/tasks", userId] });
       const allCompleted = tasks.every(t => t.completed);
-      if (allCompleted) {
-        confetti({
-          particleCount: 150,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#ff0000', '#00ff00', '#0000ff']
-        });
+      if (allCompleted && tasks.length > 0) {
+        celebrateCompletion();
         toast({
-          title: "Congratulations! 🎉",
-          description: "You've completed all your tasks! Keep up the great work!",
+          title: "Outstanding Achievement! 🏆",
+          description: "You've completed all your tasks! Your dedication is truly inspiring!",
           duration: 5000,
         });
       }

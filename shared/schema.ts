@@ -27,7 +27,12 @@ export const soundPresets = {
 } as const;
 
 export const quotes = [
+  { text: "The important thing is not to stop questioning.", author: "Albert Einstein" },
+  { text: "Success is no accident. It is hard work, perseverance, and learning.", author: "Pelé" },
+  { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
   { text: "If you can dream it, you can do it.", author: "Walt Disney" },
   { text: "Success is not final, failure is not fatal.", author: "Winston Churchill" },
-  { text: "Focus on being productive instead of busy.", author: "Tim Ferriss" }
+  { text: "Focus on being productive instead of busy.", author: "Tim Ferriss" },
+  { text: "The future depends on what you do today.", author: "Mahatma Gandhi" },
+  { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" }
 ];
