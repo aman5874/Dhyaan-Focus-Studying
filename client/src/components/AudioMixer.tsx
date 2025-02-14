@@ -36,11 +36,21 @@ export function AudioMixer() {
     setVolumes(newVolumes);
   };
 
+  const handlePlayJazz = () => {
+    playSound('jazz', 0.5); // Play jazz at 50% volume
+  };
+
+  const handleStopJazz = () => {
+    stopSound('jazz');
+  };
+
   return (
     <div className="p-6 rounded-lg bg-card space-y-6">
       <div className="flex justify-end gap-2">
         <Button variant="outline" onClick={stopAll}>Stop All</Button>
         <Button onClick={randomMix}>Random Mix</Button>
+        <Button onClick={handlePlayJazz}>Play Jazz</Button>
+        <Button onClick={handleStopJazz}>Stop Jazz</Button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,6 +1,9 @@
 import { useRef, useEffect } from "react";
 import { soundPresets } from "@shared/schema";
 
+// Define a type for the keys of soundPresets
+type SoundName = keyof typeof soundPresets;
+
 export function useAudio() {
   const audioContext = useRef<AudioContext>();
   const gainNodes = useRef<Map<string, GainNode>>(new Map());
@@ -13,7 +16,7 @@ export function useAudio() {
     };
   }, []);
 
-  const playSound = (soundName: string, volume: number) => {
+  const playSound = (soundName: SoundName, volume: number) => {
     if (!audioContext.current) return;
 
     let audioElement = audioElements.current.get(soundName);
@@ -41,7 +44,7 @@ export function useAudio() {
     }
   };
 
-  const stopSound = (soundName: string) => {
+  const stopSound = (soundName: SoundName) => {
     const audioElement = audioElements.current.get(soundName);
     if (audioElement) {
       audioElement.pause();
